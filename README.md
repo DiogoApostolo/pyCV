@@ -39,6 +39,12 @@ MSSCV can be considered a baseline [[2]](https://pubmed.ncbi.nlm.nih.gov/2480752
 ![alt text](https://github.com/DiogoApostolo/pyCV/blob/main/images/MSSCV_example.png?raw=true)
 *Figure 4: Example of MSSCV for two folds: for each class (blue and red), a starting sample (0 and 1) is chosen and assigned to the first fold, then the most distant examples (8 and 9) are chosen and assigned to the next fold. This process is repeated until there are no samples left.*
 
+## Instalation requirements
+All packages required to run pycv are listed in the requirements.txt file. To install all needed pacakges run:
+
+pip install -r requirements.txt
+
+
 ## Usage Example:
 
 The `originalDatasets` folder contains some datasets with binary problems. All datasets are numerical and have no missing values. The `CrossValidation.py` module implements the CrossValidation algorithms.
@@ -76,7 +82,7 @@ CV.write_folds(DOBSCV_folds,DOBSCV_folds_y,"abalone_3_vs_11-DOBSCV","test_CV/")
 To submit bugs and feature requests, report at [project issues](https://github.com/DiogoApostolo/pyCV/issues).
 
 ## Licence:
-The project is licensed under the MIT License - see the [License](https://github.com/DiogoApostolo/pycol/blob/main/LICENCE) file for details.
+The project is licensed under the MIT License - see the [License](https://github.com/DiogoApostolo/pycv/blob/main/LICENCE) file for details.
 
 ## References:
 
