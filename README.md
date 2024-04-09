@@ -12,7 +12,10 @@ and high feature values in testing.
 ![alt text](https://github.com/DiogoApostolo/pyCV/blob/main/images/datasetShift.png?raw=true)
 *Figure 1: Example of covariate shift: when analyzing the training dataset, it would appear the minority class (blue) only has values below 6, and the majority class (red) has values above 6. Although in the original dataset, this is not the case.*
 
-This library currently includes 4 Cross Validation Algorithms: SCV, DBSCV, DOBSCV and MSSCV
+
+Cross validation (CV) is a common method to split a dataset into different training and testing partitions. Nonetheless, the standard CV can induce dataset shift in this division. Other CV variants try to overcome this by splitting the data more carefully. Despite this, to our knowledge, there is no package that implements these methods in a ready-to-use fashion. As a result, many works use the most basic type of CV, which can induce a shift in the data and lead to unreliable results.
+
+To mitigate this gap, the (`pycv`) library currently includes 4 Cross Validation Algorithms aimed at mitigating dataset shift: SCV, DBSCV, DOBSCV and MSSCV
 
 #### SCV
 SCV is an improvement over the basic CV which guarantees that the training and testing sets have the same percentages of samples per class as in the original dataset so that the prior probability shift is avoided, however this algorithm does not actively mitigate covariate shift.
@@ -21,7 +24,7 @@ SCV is an improvement over the basic CV which guarantees that the training and t
 #### DBSCV
 Introduced in [[1]](https://doi.org/10.1080/095281300146272), DBSCV is a CV variant for addressing covariate shift. This method attempts to separate the data into folds by attributing to each fold a similar observation to the one attributed to a previous fold (Figure 2). In such a way, the distribution of each fold will be more similar when compared to SCV.
 
-![alt text](https://github.com/DiogoApostolo/pyCV/blob/main/images/DBSCV_example.png?raw=true "Employee Data title")
+![alt text](https://github.com/DiogoApostolo/pyCV/blob/main/images/DBSCV_example.png?raw=true)
 *Figure 2: Example of DBSCV for two folds: for each class (blue and red), a starting sample (0 and 1) is chosen and assigned to the first fold, then the closest examples (2 and 3) are chosen and assigned to the next fold. This process is repeated until there are no samples left.*
 
 #### DOBSCV
@@ -38,8 +41,8 @@ MSSCV can be considered a baseline [[2]](https://pubmed.ncbi.nlm.nih.gov/2480752
 
 ## Usage Example:
 
-The `dataset` folder contains some datasets with binary and multi-class problems. All datasets are numerical and have no missing values. The `complexity.py` module implements the complexity measures.
-To run the measures, the `Complexity` class is instantiated and the results may be obtained as follows:
+The `originalDatasets` folder contains some datasets with binary problems. All datasets are numerical and have no missing values. The `CrossValidation.py` module implements the CrossValidation algorithms.
+To run the cross validation algorithms, the `CrossValidation` class is instantiated and the results may be obtained as follows:
 
 ```python
 from CrossValidation import CrossValidation
