@@ -21,12 +21,13 @@ SCV is an improvement over the basic CV which guarantees that the training and t
 Introduced in [1](https://doi.org/10.1080/095281300146272), DBSCV is a CV variant for addressing covariate shift. This method attempts to separate the data into folds by attributing to each fold a similar observation to the one attributed to a previous fold (Figure 2). In such a way, the distribution of each fold will be more similar when compared to SCV.
 
 ![alt text](https://github.com/DiogoApostolo/pyCV/blob/main/images/DBSCV_example.png?raw=true "Employee Data title")
-
+*Figure 1: Example of DBSCV for two folds: for each class (blue and red), a starting sample (0 and 1) is chosen and assigned to the first fold, then the closest examples (2 and 3) are chosen and assigned to the next fold. This process is repeated until there are no samples left.*
 
 #### DOBSCV
 DOBSCV is an optimized version of DBSCV  proposed in [2](https://pubmed.ncbi.nlm.nih.gov/24807526/). While both algorithms are similar in their goal to reduce covariate shift by distributing samples of the same class as evenly as possible between folds, DOBSCV is less sensitive to random choices since, after assigning a sample to each of the $k$ folds, it picks a new random sample to restart the process (Figure 3). 
 
 ![alt text](https://github.com/DiogoApostolo/pyCV/blob/main/images/DOBSCV_example.png?raw=true)
+
 
 #### MSSCV
 MSSCV can be considered a baseline [2](https://pubmed.ncbi.nlm.nih.gov/24807526/), corresponding to the opposite version of DBSCV. Instead of assigning the closest sample to the next fold, it assigns the most distant (Figure 4). Each fold will be as different as possible, which may cause an increase in covariate shift but also provide more variability of samples.
