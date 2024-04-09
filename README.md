@@ -42,32 +42,31 @@ The `dataset` folder contains some datasets with binary and multi-class problems
 To run the measures, the `Complexity` class is instantiated and the results may be obtained as follows:
 
 ```python
-from pycol_complexity import complexity
-complexity = complexity.Complexity("dataset/61_iris.arff",distance_func="default",file_type="arff")
+from CrossValidation import CrossValidation
 
-# Feature Overlap
-print(complexity.F1())
-print(complexity.F1v())
-print(complexity.F2())
-# (...)
+CV = CrossValidation("originalDatasets/61_iris.arff",distance_func="default",file_type="arff")
 
-# Instance Overlap
-print(complexity.R_value())
-print(complexity.deg_overlap())
-print(complexity.CM())
-# (...)
 
-# Structural Overlap
-print(complexity.N1())
-print(complexity.T1())
-print(complexity.Clust())
-# (...)
 
-# Multiresolution Overlap
-print(complexity.MRCA())
-print(complexity.C1())
-print(complexity.purity())
-# (...)
+#Partition the dataset using SCV
+SCV_folds,SCV_folds_y,SCV_folds_inx=CV.SCV(foldNum=5)
+
+#Partition the dataset using DBSCV
+DBSCV_folds,DBSCV_folds_y,DBSCV_folds_inx=CV.DBSCV(foldNum=5)
+
+#Partition the dataset using MSSCV
+MSSCV_folds,MSSCV_folds_y,MSSCV_folds_inx=CV.MSSCV(foldNum=5)
+
+#Partition the dataset using DOBSCV
+DOBSCV_folds,DOBSCV_folds_y,DOBSCV_folds_inx=CV.DOBSCV(foldNum=5)
+
+
+
+#Write the partitions into arff files
+CV.write_folds(SCV_folds,SCV_folds_y,"abalone_3_vs_11-SCV","test_CV/")
+CV.write_folds(DBSCV_folds,DBSCV_folds_y,"abalone_3_vs_11-DBSCV","test_CV/")
+CV.write_folds(MSSCV_folds,MSSCV_folds_y,"abalone_3_vs_11-MSSCV","test_CV/")
+CV.write_folds(DOBSCV_folds,DOBSCV_folds_y,"abalone_3_vs_11-DOBSCV","test_CV/")
 ```
 
 ## Developer notes:
@@ -78,11 +77,11 @@ The project is licensed under the MIT License - see the [License](https://github
 
 ## References:
 
-[[1]] Xinchuan Zeng and Tony R. Martinez. Distribution-balanced stratified cross-validation
+[[1]](https://doi.org/10.1080/095281300146272) Xinchuan Zeng and Tony R. Martinez. Distribution-balanced stratified cross-validation
 for accuracy estimation. Journal of Experimental & Theoretical Artificial Intelligence,
 12(1):1–12, 2000. doi: 10.1080/095281300146272. URL https://doi.org/10.1080/095281300146272.
 
-[[2]] Jose Garc ́ıa Moreno-Torres, Jos ́e A. Saez, and Francisco Herrera. Study on the impact of
+[[2]](https://pubmed.ncbi.nlm.nih.gov/24807526/) Jose Garc ́ıa Moreno-Torres, Jos ́e A. Saez, and Francisco Herrera. Study on the impact of
 partition-induced dataset shift on k-fold cross-validation. IEEE Transactions on Neural
 Networks and Learning Systems, 23(8):1304–1312, 2012b. doi: 10.1109/TNNLS.2012.2199516.
 
