@@ -82,7 +82,7 @@ CV.write_folds(DOBSCV_folds,DOBSCV_folds_y,"abalone_3_vs_11-DOBSCV","test_CV/")
 To submit bugs and feature requests, report at [project issues](https://github.com/DiogoApostolo/pyCV/issues).
 
 ## Licence:
-The project is licensed under the MIT License - see the [License](https://github.com/DiogoApostolo/pycv/blob/main/LICENCE) file for details.
+The project is licensed under the MIT License - see the [License](https://github.com/DiogoApostolo/pyCV/blob/main/LICENSE) file for details.
 
 ## References:
 
