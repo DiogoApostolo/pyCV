@@ -69,13 +69,20 @@ MSSCV_folds,MSSCV_folds_y,MSSCV_folds_inx=CV.MSSCV(foldNum=5)
 #Partition the dataset using DOBSCV
 DOBSCV_folds,DOBSCV_folds_y,DOBSCV_folds_inx=CV.DOBSCV(foldNum=5)
 
+#NEW PARTITION WITH FPDBSCV
 
+CV_FP = CrossValidation("originalDatasets/61_iris.arff",distance_func="default",file_type="arff",is_calculate_dist_matrix=False)
+
+#select threshold
+CV_FP.main_feature_partitioning(threshold=30)
+FPDBSCV_folds,FPDBSCV_folds_y,FPDBSCV_folds_inx = CV_FP.featurePartitioning_DBSCV(foldNum=5)
 
 #Write the partitions into arff files
 CV.write_folds(SCV_folds,SCV_folds_y,"abalone_3_vs_11-SCV","test_CV/")
 CV.write_folds(DBSCV_folds,DBSCV_folds_y,"abalone_3_vs_11-DBSCV","test_CV/")
 CV.write_folds(MSSCV_folds,MSSCV_folds_y,"abalone_3_vs_11-MSSCV","test_CV/")
 CV.write_folds(DOBSCV_folds,DOBSCV_folds_y,"abalone_3_vs_11-DOBSCV","test_CV/")
+CV.write_folds(FPDBSCV_folds,FPDBSCV_folds_y,"abalone_3_vs_11-FPDBSCV","test_CV/")
 ```
 
 ## Developer notes:
